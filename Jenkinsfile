@@ -22,12 +22,10 @@ pipeline {
         
         stage('create image for docker') {
             tools{
-              docker "docker"
+              dockerTool "docker"
             }
             steps{
-              script {
-                docker.build('spring:consumedbackend')
-              }
+              bat 'docker build -t spring:consumedbackend .'
             }
         }
 
