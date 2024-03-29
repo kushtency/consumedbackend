@@ -25,7 +25,7 @@ pipeline {
               dockerTool "docker"
             }
             steps{
-              bat 'docker build -t spring:consumedbackend .'
+              sh 'docker build -t spring:consumedbackend .'
             }
         }
 
