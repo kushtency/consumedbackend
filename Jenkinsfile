@@ -21,6 +21,9 @@ pipeline {
         
         
         stage('create image for docker') {
+            tools{
+              docker "docker"
+            }
             steps{
                 bat 'docker build -t spring:consumedbackend .'
                 bat 'echo "image created"'
