@@ -13,7 +13,7 @@ pipeline {
         } 
         stage("Build the code"){
             steps{
-              sh "./consumedbackend/mvnw clean package"
+              bat "./consumedbackend/mvnw clean package"
             }   
         }
         
