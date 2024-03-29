@@ -22,8 +22,8 @@ pipeline {
         
         stage('create image for docker') {
             steps{
-                sh 'docker build -t spring:consumedbackend .'
-                sh 'echo "image created"'
+                bat 'docker build -t spring:consumedbackend .'
+                bat 'echo "image created"'
             }
         }
 
