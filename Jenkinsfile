@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         
         stage('Code checkout according to environment') {
@@ -22,7 +22,8 @@ pipeline {
         
         stage('create image for docker') {
             steps{
-                sh 'docker build -t spring:consumedbackend . '
+                sh 'docker build -t spring:consumedbackend .'
+                sh 'echo "image created"'
             }
         }
 
