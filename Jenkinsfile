@@ -21,9 +21,7 @@ pipeline {
         
         
         stage('create image for docker') {
-            tools{
-              dockerTool "docker"
-            }
+            agent linux
             steps{
               sh 'docker build -t spring:consumedbackend .'
             }
