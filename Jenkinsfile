@@ -12,17 +12,20 @@ pipeline {
             }
         } 
         stage("Build the code"){
+            tools{
+              jdk "JAVA_HOME_17"
+            }
             steps{
               bat "./mvnw clean package"
             }   
         }
         
         
-        // stage('create image for docker') {
-        //     steps{
-        //         sh 'docker build -t muskanchaurasia/mini-assignment  Mini-assignment/ '
-        //     }
-        // }
+        stage('create image for docker') {
+            steps{
+                sh 'docker build -t muskanchaurasia/mini-assignment  Mini-assignment/ '
+            }
+        }
 
         // stage('Run the container'){
         //     steps{
