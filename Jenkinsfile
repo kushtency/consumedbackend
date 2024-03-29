@@ -1,7 +1,6 @@
 pipeline {
     agent any
-  
-
+    
     stages {
         
         stage('Code checkout according to environment') {
@@ -23,35 +22,14 @@ pipeline {
         
         stage('create image for docker') {
             steps{
-                sh 'docker build -t muskanchaurasia/mini-assignment  Mini-assignment/ '
+                sh 'docker build -t spring:consumedbackend . '
             }
         }
 
-        // stage('Run the container'){
-        //     steps{
-        //         script{
-        //             if(params.ENVIRONMENT=='DEVELOPMENT'){
-        //                 def docker_container = sh(returnStdout: true, script: 'docker ps -a -f name="MiniAssignment" -q')
-        //                 if(docker_container)
-        //                     {
-        //                 sh "docker stop ${docker_container}"
-        //                 sh "docker rm --force ${docker_container}"
-        //             }
-        //             sh 'docker run -d --name MiniAssignment -p 8084:8080 muskanchaurasia/mini-assignment'
-        //             }
-        //             else if(params.ENVIRONMENT=='PRODUCTION'){
-        //                 def docker_container = sh(returnStdout: true, script: 'docker ps -a -f name="MiniAssignment" -q')
-        //                 if(docker_container)
-        //                     {
-        //                 sh "docker stop ${docker_container}"
-        //                 sh "docker rm --force ${docker_container}"
-        //             }
-        //             sh 'docker run -d --name MiniAssignment -p 9090:8080 muskanchaurasia/mini-assignment'
-        //             }
-        //             else{
-        //                 error('Kindly lookup the code')
-        //             }
-        //     }
-        // }
+        stage('Run the container'){
+            steps{
+              sh 'docker run -p 8080:8080 spring:consumedbackend'
+            }
+        }
     }
 }
