@@ -24,9 +24,8 @@ pipeline {
             tools{
               docker "docker"
             }
-            steps{
-                bat 'docker build -t spring:consumedbackend .'
-                bat 'echo "image created"'
+            script {
+              docker.build('spring:consumedbackend')
             }
         }
 
