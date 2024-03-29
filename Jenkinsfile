@@ -24,8 +24,10 @@ pipeline {
             tools{
               docker "docker"
             }
-            script {
-              docker.build('spring:consumedbackend')
+            steps{
+              script {
+                docker.build('spring:consumedbackend')
+              }
             }
         }
 
