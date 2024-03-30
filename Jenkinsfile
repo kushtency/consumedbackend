@@ -26,7 +26,7 @@ pipeline {
 
         stage('Run the container'){
             steps{
-              sh 'docker run -p 8080:8080 spring:consumedbackend'
+              sh 'docker run -p 5500:8080 spring:consumedbackend'
             }
         }
     }
