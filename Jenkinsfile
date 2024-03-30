@@ -11,11 +11,8 @@ pipeline {
             }
         } 
         stage("Build the code"){
-            tools{
-              jdk "JAVA_HOME_17"
-            }
             steps{
-              bat "./mvnw clean package"
+              sh "./mvnw clean package"
             }   
         }
         
