@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+      pass = credentials('DOCKER_PASSWORD')
+    }
+
     stages {
         
         stage('Code checkout according to environment') {
@@ -14,6 +18,7 @@ pipeline {
             steps{
               sh "chmod +x ./mvnw"
               sh "./mvnw clean package"
+              sh 'echo "pass : $pass"'
             }   
         }
         
