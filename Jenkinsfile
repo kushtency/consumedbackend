@@ -20,13 +20,16 @@ pipeline {
         
         stage('create image for docker') {
             steps{
-              sh 'docker build -t spring:consumedbackend .'
+              sh 'docker build -t kushaagrsdocker/spring-consumedbackend:latest .'
             }
         }
 
-        stage('Run the container'){
+        stage('Push the container'){
             steps{
-              sh 'docker run -p 5500:8080 spring:consumedbackend'
+              withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'docker-password', usernameVariable: 'docker-username')]) {
+                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+                sh "docker push kushaagrsdocker/spring-consumedbackend:latest"
+              }
             }
         }
     }
