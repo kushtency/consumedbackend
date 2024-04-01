@@ -26,8 +26,8 @@ pipeline {
 
         stage('Push the container'){
             steps{
-              withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'docker-password', usernameVariable: 'docker-username')]) {
-                sh "docker login -u ${env.docker-username} -p ${env.docker-password}"
+              withCredentials([usernamePassword(credentialsId: '63f970ab-8ac1-448f-a54a-2648e9008fcc', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
                 sh "docker push kushaagrsdocker/spring-consumedbackend:latest"
               }
             }
