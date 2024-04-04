@@ -17,6 +17,21 @@ pipeline {
               sh "./mvnw clean package"
             }   
         }
+
+        stage('create image for docker') {
+                    steps{
+                      sh 'docker build -t kushaagrsdocker/spring-consumedbackend:latest .'
+                    }
+                }
+        
+                stage('Push the container'){
+                    steps{
+                      withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                        sh 'echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin'
+                        sh "docker push kushaagrsdocker/spring-consumedbackend:latest"
+                      }
+                    }
+                }
         
     }
 }
