@@ -13,7 +13,7 @@ pipeline {
         
         stage("Build the code"){
             steps{
-              sh "chmod +x ./mvn"
+              sh "chmod +x ./mvnw"
               sh "./mvnw clean package"
             }   
         }
